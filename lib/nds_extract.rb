@@ -68,20 +68,18 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
-  gross_totals = {"Warner Brothers" => 0, "Paramount" => 0, "Weinstein" => 0, "Alpha Films" => 0, "Universal" => 0, "Fox" => 0, "TriStar" => 0, "Focus" => 0, "Dreamworks" => 0, "Sony" => 0, "Miramax" => 0, "MGM" => 0, "Buena Vista" => 0}
-  for movie in collection do
-    for director in directors_database do
-      if director[:name] == movie[:director_name]
-        for movies2 in director[:movies] do
-          puts movies2
-          if movie[:title] == movies2[:title] do
-            gross_totals[movies2[:studio]] = gross_totals[movies2[:studio]] + movies2[:worldwide_gross]
-          end
-        end
-      end
+  grossPer = {}
+  counter = 0
+  while counter < collection.length do
+    movie = collection[counter]
+    if !grossPer[movie[:studio]]
+      grossPer[movie[:studio]] = movie[:worldwide_gross]
+    else
+      grossPer[movie[:studio]] += movie[:worldwide_gross]
     end
+    counter += 1
   end
-  gross_totals
+  return grossPer
 end
 
 def movies_with_directors_set(source)
@@ -94,14 +92,17 @@ def movies_with_directors_set(source)
   # RETURN:
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
-  # to have a :director_name key added to it.
-  output = []
-  for director in source do
-    for movie in director[:movies] do
-      output << [{:title => movie[:title], :director_name => director[:name]}]
-    end
+  # to have a :director_name key added to it.i = 0
+  aoa = []
+  count = 0
+  while count < source.length do
+    directorInfo = source[count]
+    directorName = directorInfo[:name]
+    directorMovies = directorInfo[:movies]
+    aoa << movies_with_director_key(directorName, directorMovies)
+    count += 1
   end
-  output
+  aoa
 end
 
 # ----------------    End of Your Code Region --------------------
