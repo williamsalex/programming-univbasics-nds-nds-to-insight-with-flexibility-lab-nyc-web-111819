@@ -97,9 +97,9 @@ def movies_with_directors_set(source)
   count = 0
   while count < source.length do
     directorInfo = source[count]
-    director_name = directorInfo[:name]
-    directors_movies = directorInfo[:movies]
-    aoa << movies_with_director_key(director_name, directors_movies)
+    directorName = directorInfo[:name]
+    directorMovies = directorInfo[:movies]
+    aoa << movies_with_director_key(directorName, directorMovies)
     count += 1
   end
   aoa
