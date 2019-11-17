@@ -77,7 +77,7 @@ def gross_per_studio(collection)
     else
       grossPer[movie[:studio]] += movie[:worldwide_gross]
     end
-    count += 1
+    counter += 1
   end
   return grossPer
 end
