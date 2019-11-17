@@ -70,6 +70,7 @@ def gross_per_studio(collection)
   # total of all the worldwide_gross numbers for every movie in the input Hash
   gross_totals = {"Warner Brothers" => 0, "Paramount" => 0, "Weinstein" => 0, "Alpha Films" => 0, "Universal" => 0, "Fox" => 0, "TriStar" => 0, "Focus" => 0, "Dreamworks" => 0, "Sony" => 0, "Miramax" => 0, "MGM" => 0, "Buena Vista" => 0}
   for movie in collection do
+<<<<<<< HEAD
     for director in directors_database do
       if director[:name] == movie[:director_name]
         for movies2 in director[:movies] do
@@ -82,6 +83,13 @@ def gross_per_studio(collection)
     end
   end
   gross_totals
+=======
+    puts directors_database[directors_database.index(movie[:director_name])]
+    gross_totals[directors_database[movie[:director_name]][movie[:title]][:studio]] += directors_database[movie[:director_name]][movie[:title]][:worldwide_gross]
+  gross_totals
+end
+gross_totals
+>>>>>>> 3ab3be4d98157c1356c930597acb70001a04c5e6
 end
 
 def movies_with_directors_set(source)
